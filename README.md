@@ -2,9 +2,9 @@
 
 ## Structure
 ```
-data/    raw dataset (dataset.csv, git-ignored)
+data/    raw dataset — Housing.csv
 src/     training script — train_25L-8011.py
-model/   trained artifact (model.joblib, git-ignored)
+model/   trained artifact — model.joblib
 ```
 
 ## Setup & run
@@ -18,6 +18,5 @@ pip install -r requirements.txt
 python src/train_25L-8011.py
 ```
 
-Put your dataset at `data/dataset.csv` first — the **last column is treated as the target**,
-every other column as a feature. The script prints the test accuracy and writes
-`model/model.joblib`.
+Trains a RandomForest regressor on `data/Housing.csv` predicting `price`,
+prints test R2 / MAE, and writes `model/model.joblib`.

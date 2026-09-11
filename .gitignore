@@ -4,7 +4,3 @@ __pycache__/
 venv/
 .DS_Store
 .ipynb_checkpoints/
-data/*
-!data/.gitkeep
-model/*
-!model/.gitkeep
