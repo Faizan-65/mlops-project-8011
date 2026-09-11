@@ -14,6 +14,11 @@ CLEAN = ROOT / "data" / "dataset_clean.csv"
 MODEL = ROOT / "model" / "model.joblib"
 TARGET = "price"
 
+# Hyperparameters — bump these between runs to compare experiments
+N_ESTIMATORS = 100
+MAX_DEPTH = None
+RANDOM_STATE = 42
+
 
 def preprocess():
     """Raw CSV -> fully numeric CSV with the categorical columns one-hot encoded."""
@@ -40,9 +45,12 @@ def preprocess():
 
 def train(clean):
     X, y = clean.drop(columns=TARGET), clean[TARGET]
-    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=RANDOM_STATE)
 
-    model = RandomForestRegressor(n_estimators=100, random_state=42).fit(X_tr, y_tr)
+    print(f"Training RandomForest: n_estimators={N_ESTIMATORS}, max_depth={MAX_DEPTH}")
+    model = RandomForestRegressor(
+        n_estimators=N_ESTIMATORS, max_depth=MAX_DEPTH, random_state=RANDOM_STATE
+    ).fit(X_tr, y_tr)
     pred = model.predict(X_te)
     print(f"Test R2: {r2_score(y_te, pred):.3f}  MAE: {mean_absolute_error(y_te, pred):,.0f}")
 
