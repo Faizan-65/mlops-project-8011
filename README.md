@@ -2,9 +2,9 @@
 
 ## Structure
 ```
-data/    dataset.csv (raw) + dataset_clean.csv (preprocessed, one-hot encoded)
+data/    dataset.csv (raw) + dataset_clean.csv (preprocessed) — git-ignored
 src/     training script — train_25L-8011.py
-model/   trained artifact — model.joblib
+model/   trained artifact — model.joblib — git-ignored
 ```
 
 ## Setup & run
@@ -21,3 +21,5 @@ python src/train_25L-8011.py
 Preprocesses `data/dataset.csv` into `data/dataset_clean.csv` (nulls and duplicates
 dropped, categorical columns one-hot encoded), trains a RandomForest regressor on that
 clean file to predict `price`, prints test R2 / MAE, and writes `model/model.joblib`.
+
+Only source and config files are versioned; `data/` and `model/` are excluded via `.gitignore`.
