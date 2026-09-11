@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "dataset.csv"
@@ -45,6 +46,7 @@ def preprocess():
 
 def train(clean):
     X, y = clean.drop(columns=TARGET), clean[TARGET]
+    X = pd.DataFrame(StandardScaler().fit_transform(X), columns=X.columns)  # normalization
     X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=RANDOM_STATE)
 
     print(f"Training RandomForest: n_estimators={N_ESTIMATORS}, max_depth={MAX_DEPTH}")
