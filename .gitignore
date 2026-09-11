@@ -22,3 +22,11 @@ __pycache__/
 .ipynb_checkpoints/
 .vscode/
 .idea/
+
+# Report assets (screenshots / generated report)
+*.png
+*.jpg
+*.docx
+*.pdf
+build_report.py
+graph.txt
