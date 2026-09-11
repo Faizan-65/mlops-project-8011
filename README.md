@@ -2,7 +2,7 @@
 
 ## Structure
 ```
-data/    raw dataset — Housing.csv
+data/    raw dataset — dataset.csv
 src/     training script — train_25L-8011.py
 model/   trained artifact — model.joblib
 ```
@@ -18,5 +18,5 @@ pip install -r requirements.txt
 python src/train_25L-8011.py
 ```
 
-Trains a RandomForest regressor on `data/Housing.csv` predicting `price`,
+Trains a RandomForest regressor on `data/dataset.csv` predicting `price`,
 prints test R2 / MAE, and writes `model/model.joblib`.

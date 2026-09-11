@@ -9,7 +9,7 @@ from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data" / "Housing.csv"
+DATA = ROOT / "data" / "dataset.csv"
 MODEL = ROOT / "model" / "model.joblib"
 TARGET = "price"
 
@@ -23,7 +23,7 @@ def main():
         sys.exit(f"{DATA} has a header but no rows")
     print(f"Loaded {DATA} -> {df.shape[0]} rows, {df.shape[1] - 1} features")
 
-    X = pd.get_dummies(df.drop(columns=TARGET), drop_first=True)
+    X = pd.get_dummies(df.drop(columns=TARGET))
     y = df[TARGET]
 
     X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
